@@ -1,4 +1,4 @@
-package com.example.mypracticas.Components.state
+package com.example.mypracticas.state
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
