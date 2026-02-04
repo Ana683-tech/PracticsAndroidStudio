@@ -14,7 +14,6 @@ import com.example.mypracticas.Components.MyImage
 import com.example.mypracticas.Components.MyNetworkImage
 import com.example.mypracticas.Components.MyProgress
 import com.example.mypracticas.Components.MyProgressAdvance
-import com.example.mypracticas.Components.ProgressAnimation
 import com.example.mypracticas.ui.theme.MyPracticasTheme
 
 class MainActivity : ComponentActivity() {
@@ -24,7 +23,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             MyPracticasTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    ProgressAnimation(Modifier.padding(innerPadding))
+                    MyProgressAdvance(Modifier.padding(innerPadding))
                 }
             }
         }
