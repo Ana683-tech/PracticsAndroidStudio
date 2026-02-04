@@ -16,6 +16,7 @@ import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -57,7 +58,7 @@ fun MyProgress(modifier: Modifier) {
 
 @Composable
 fun MyProgressAdvance(modifier: Modifier, test: () -> Unit = { }) {
-    var progress by remember { mutableStateOf(0.5f) }
+    var progress by remember { mutableFloatStateOf(0.5f) }
     var isLoading by remember { mutableStateOf(false) }
 //hace una animacion mucho mas suave para que nuestro progress no haga el cambio de una manera brusca
     val animatedprogress: Float by animateFloatAsState(targetValue = progress)
