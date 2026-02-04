@@ -63,4 +63,7 @@ dependencies {
     //implementacion de coil
     implementation("io.coil-kt:coil-compose:2.6.0")
     implementation("io.coil-kt:coil-gif:2.6.0")
+
+    //implemtacion de libreria lottie para animaciones
+    implementation("com.airbnb.android:lottie-compose:6.4.0")
 }

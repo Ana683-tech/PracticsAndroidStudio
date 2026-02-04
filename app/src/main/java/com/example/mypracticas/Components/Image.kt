@@ -55,6 +55,6 @@ fun MyIcon(modifier: Modifier) {
         modifier = modifier.size(400.dp),
         painter = painterResource(R.drawable.ic_baseline),
         tint = Color.Magenta,
-        contentDescription = "foto de pareja"
+        contentDescription = "numerico 123"
     )
 }

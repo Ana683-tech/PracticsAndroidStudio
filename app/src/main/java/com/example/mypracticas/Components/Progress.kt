@@ -1,6 +1,5 @@
 package com.example.mypracticas.Components
 
-import androidx.compose.animation.core.animate
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -25,7 +24,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.unit.dp
-import java.nio.file.WatchEvent
+import com.airbnb.lottie.compose.LottieAnimation
+import com.airbnb.lottie.compose.LottieCompositionSpec
+import com.airbnb.lottie.compose.LottieConstants
+import com.airbnb.lottie.compose.rememberLottieComposition
+import com.example.mypracticas.R
 
 
 @Composable
@@ -85,8 +88,19 @@ fun MyProgressAdvance(modifier: Modifier, test: () -> Unit = { }) {
             Spacer(modifier.width(10.dp))
             Button(onClick = { progress += 0.1f }, enabled = true) { Text("->") }
         }
-        Button(onClick = {isLoading = !isLoading }, enabled = true) {
+        Button(onClick = { isLoading = !isLoading }, enabled = true) {
             Text("show/hide")
         }
+    }
+}
+
+@Composable
+fun ProgressAnimation(modifier: Modifier) {
+    val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.waves))
+    Column(
+        modifier = modifier.fillMaxSize(),
+        verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        LottieAnimation(composition = composition, iterations = LottieConstants.IterateForever)
     }
 }
