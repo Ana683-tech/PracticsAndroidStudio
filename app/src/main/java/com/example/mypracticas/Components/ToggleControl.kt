@@ -89,7 +89,7 @@ fun MyCheckBox(modifier: Modifier = Modifier) {
         }
     }
 }
-
+//------------------------------------------de aqui para abajo es uno ------------------------------------------
 @Composable
 fun ParentCheckBoxes(modifier: Modifier = Modifier) {
     var state by remember {
@@ -136,6 +136,8 @@ fun CheckBoxWithText(
         Text(checkBoxState.label)
     }
 }
+
+//-------------------------------------de aqui para arriba es uno ---------------------------------------------
 
 @Composable
 fun TriStateCheckBox(modifier: Modifier = Modifier) {
