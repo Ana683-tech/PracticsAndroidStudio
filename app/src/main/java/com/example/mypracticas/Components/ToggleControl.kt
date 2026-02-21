@@ -11,6 +11,8 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.CheckboxDefaults
 import androidx.compose.material3.Icon
+import androidx.compose.material3.RadioButton
+import androidx.compose.material3.RadioButtonDefaults
 import androidx.compose.material3.Switch
 import androidx.compose.material3.SwitchDefaults
 import androidx.compose.material3.Text
@@ -29,6 +31,7 @@ import androidx.compose.ui.state.ToggleableState
 import androidx.compose.ui.unit.dp
 import com.example.mypracticas.Components.state.CheckBoxState
 import com.example.mypracticas.R
+import kotlinx.coroutines.selects.select
 
 @Composable
 fun MySwitch(modifier: Modifier = Modifier) {
@@ -89,6 +92,7 @@ fun MyCheckBox(modifier: Modifier = Modifier) {
         }
     }
 }
+
 //------------------------------------------de aqui para abajo es uno ------------------------------------------
 @Composable
 fun ParentCheckBoxes(modifier: Modifier = Modifier) {
@@ -141,44 +145,82 @@ fun CheckBoxWithText(
 
 @Composable
 fun TriStateCheckBox(modifier: Modifier = Modifier) {
-    var parentState: ToggleableState by remember { mutableStateOf(ToggleableState.Off) }
+    var state by remember { mutableStateOf(ToggleableState.Off) }
     var child1 by remember { mutableStateOf(false) }
     var child2 by remember { mutableStateOf(false) }
-
     LaunchedEffect(child1, child2) {
-        parentState = when {
+        state = when {
             child1 && child2 -> ToggleableState.On
             !child1 && !child2 -> ToggleableState.Off
             else -> ToggleableState.Indeterminate
-
         }
-
     }
-
     Column(modifier = modifier) {
         Row(verticalAlignment = Alignment.CenterVertically) {
-            TriStateCheckbox(parentState, onClick = {
-                val newState: Boolean = parentState != ToggleableState.On
+            TriStateCheckbox(state, onClick = {
+                val newState = state != ToggleableState.On
                 child1 = newState
                 child2 = child1
             })
-            Text("Seleccionar todo")
+            Text(" seleccionar todo")
         }
-
         Row(
             verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier.padding(horizontal = 16.dp)
         ) {
             Checkbox(child1, onCheckedChange = { child1 = it })
-            Text("Ejemplo 1")
+            Text(" Ejemplo 1")
         }
+
         Row(
             verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier.padding(horizontal = 16.dp)
         ) {
             Checkbox(child2, onCheckedChange = { child2 = it })
-            Text("Ejemplo 2")
+            Text(" ejemplo 2")
         }
 
+    }
+}
+
+@Composable
+fun MyRadioButton(modifier: Modifier = Modifier) {
+    var state by remember { mutableStateOf(false) }
+    Row(modifier = modifier, verticalAlignment = Alignment.CenterVertically) {
+        RadioButton(
+            selected = state,
+            onClick = { state = true },
+            enabled = false,
+            colors = RadioButtonDefaults.colors(
+                selectedColor = Color.Red,
+                unselectedColor = Color.Yellow,
+                disabledSelectedColor = Color.Green,
+                disabledUnselectedColor = Color.Magenta
+            )
+        )
+        Text("ejemplo 1")
+    }
+}
+//-----------------------------------------------------------------------
+@Composable
+fun MyRadioButtonList(modifier: Modifier = Modifier) {
+    var selectedName by remember { mutableStateOf("") }
+
+    Column(modifier = modifier) {
+        RadioButtonComponent("Ana", selectedName = selectedName) { selectedName = it }
+        RadioButtonComponent("Patricia", selectedName = selectedName) { selectedName = it }
+        RadioButtonComponent("Castillo", selectedName = selectedName) { selectedName = it }
+        RadioButtonComponent("Medina", selectedName = selectedName) { selectedName = it }
+    }
+}
+
+@Composable
+fun RadioButtonComponent(name: String, selectedName: String, onItemSelected: (String) -> Unit) {
+    Row(
+        modifier = Modifier.clickable { onItemSelected(name) },
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        RadioButton(selected = name == selectedName, onClick = { onItemSelected(name) })
+        Text(name)
     }
 }
