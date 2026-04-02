@@ -22,19 +22,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.example.mypracticas.Components.model.DrawerItem
-import kotlinx.coroutines.CoroutineScope
 
 
 @Composable
 fun MyModalDrawer(drawerState: DrawerState, content: @Composable () -> Unit) {
-    val drawerState: DrawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
-    val scope: CoroutineScope = rememberCoroutineScope()
     val myItems = listOf(
         DrawerItem(title = "Home", icon = Icons.Default.Home, notification = 5),
         DrawerItem(title = "Fav", icon = Icons.Default.Favorite, notification = 0),
