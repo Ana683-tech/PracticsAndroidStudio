@@ -2,7 +2,9 @@
 
 package com.example.mypracticas.Components
 
+import androidx.compose.foundation.clickable
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
@@ -14,14 +16,15 @@ import androidx.compose.ui.res.painterResource
 import com.example.mypracticas.R
 
 @Composable
-fun MyTopAppBar(modifier: Modifier = Modifier) {
+fun MyTopAppBar(modifier: Modifier = Modifier,onNavSelected:() -> Unit) {
 
     TopAppBar(
         title = { Text("My App") },
         navigationIcon = {
             Icon(
                 painter = painterResource(R.drawable.ic_baseline),
-                contentDescription = null
+                contentDescription = null,
+                modifier = Modifier.clickable{onNavSelected()}
             )
         },
         actions = {
@@ -42,10 +45,10 @@ fun MyTopAppBar(modifier: Modifier = Modifier) {
             )
         },
         colors = TopAppBarDefaults.topAppBarColors(
-            containerColor = Color.Blue,
+            containerColor = Color.Red,
             titleContentColor = Color.White,
             navigationIconContentColor = Color.White,
-            actionIconContentColor = Color.Red,
+            actionIconContentColor = Color.White,
             scrolledContainerColor = Color.Black
         )
     )
