@@ -10,14 +10,12 @@ import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material3.Badge
 import androidx.compose.material3.DrawerState
-import androidx.compose.material3.DrawerValue
 import androidx.compose.material3.Icon
 import androidx.compose.material3.ModalDrawerSheet
 import androidx.compose.material3.ModalNavigationDrawer
 import androidx.compose.material3.NavigationDrawerItem
 import androidx.compose.material3.NavigationDrawerItemDefaults
 import androidx.compose.material3.Text
-import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
@@ -37,7 +35,7 @@ fun MyModalDrawer(drawerState: DrawerState, content: @Composable () -> Unit) {
         DrawerItem(title = "Build", icon = Icons.Default.Build, notification = 5),
         DrawerItem(title = "Call", icon = Icons.Default.Call, notification = 8),
     )
-    var selectedIndex by remember() { mutableIntStateOf(0) }
+    var selectedIndex by remember { mutableIntStateOf(0) }
     ModalNavigationDrawer(
         drawerState = drawerState, drawerContent = {
             ModalDrawerSheet(
@@ -50,8 +48,10 @@ fun MyModalDrawer(drawerState: DrawerState, content: @Composable () -> Unit) {
                 myItems.forEachIndexed { index, drawerItem ->
                     NavigationDrawerItem(
                         label = { Text(drawerItem.title) },
-                        onClick = {selectedIndex = index},
-                        selected = selectedIndex == index,
+                        onClick = {
+                            selectedIndex = index
+                        },//linea que esta igualando en que si esta secleccionado
+                        selected = selectedIndex == index,//linea que verifica que si o si este seleccionado
                         icon = {
                             Icon(
                                 imageVector = drawerItem.icon, contentDescription = null
@@ -60,8 +60,8 @@ fun MyModalDrawer(drawerState: DrawerState, content: @Composable () -> Unit) {
                         badge = {
                             if (drawerItem.notification > 0) {
                                 Badge(
-                                    containerColor = if (selectedIndex == index) Color.White else Color.Red,
-                                    contentColor = if (selectedIndex == index) Color.Red else Color.White
+                                    containerColor = if (selectedIndex == index) Color.White else Color.Red,//linea que se encarga de hacer el cambio de color en la notificacion
+                                    contentColor = if (selectedIndex == index) Color.Red else Color.White//linea que tambien hace el cambio de la notificacion
                                 ) { Text(drawerItem.notification.toString()) }
                             }
                         },
@@ -77,7 +77,6 @@ fun MyModalDrawer(drawerState: DrawerState, content: @Composable () -> Unit) {
                             unselectedBadgeColor = Color.Red
 
                         )
-
                     )
                     Spacer(Modifier.height(10.dp))
                 }

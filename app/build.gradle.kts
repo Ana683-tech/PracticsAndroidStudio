@@ -52,6 +52,7 @@ dependencies {
     implementation(libs.androidx.compose.material3)
 
     implementation(libs.constraint.layout)
+    implementation(libs.androidx.material3)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
@@ -60,6 +61,10 @@ dependencies {
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
     debugImplementation(libs.androidx.compose.ui.tooling)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
+
+
+    //implementacion de la libreria para iconos
+    implementation("androidx.compose.material:material-icons-extended")
 
     // Coil para Jetpack Compose
     implementation("io.coil-kt:coil-compose:2.6.0")
